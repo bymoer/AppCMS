@@ -1,0 +1,70 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Web.PublishedModels;
+<!-- Product prices - NOT DONE YET - NEEDS OPTIMIZATION FOR RESPONSIVENESS !!!!! -->
+<section class="container" style="position: relative;">
+
+
+    <div class="row product-price-headers">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h1>We offer</h1>
+            <h2>The following packages</h2>
+        </div>
+    </div>
+
+    <div class="row" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center;">
+
+
+        @{
+            
+            var priceCards = Model.Value<IEnumerable<IPublishedElement>>("pricecards");
+            
+            foreach(var priceCard in priceCards)
+            {
+                
+                var pricecardFeatures = priceCard.Value<IEnumerable<IPublishedElement>>("pricecardFeatures");
+
+                var pricecardSize = priceCard.Value<string>("pricecardSize");
+                var pricecardPrice = priceCard.Value<int>("pricecardPrice"); 
+                var pricecardCurrency = priceCard.Value<string>("pricecardCurrency");
+                var pricecardInterval = priceCard.Value<string>("pricecardInterval");
+
+                <article class="card-wrapper">
+                    <div id="product-@pricecardSize.ToLower()" class="product-title-wrapper">
+                        <!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ffffff" fill-opacity="1" d="M0,0L60,0C120,0,240,0,360,26.7C480,53,600,107,720,149.3C840,192,960,224,1080,240C1200,256,1320,256,1380,256L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>-->
+                        <!--<h1 style="z-index: 10; margin-left: 5%; margin-top: 0px !important; color: #5c245f; align-self: center;">Small</h1>-->
+                        <p class="header-text-2">@pricecardSize</p>
+                    </div>
+
+                    <div class="product-features-wrapper">
+                        <ul class="product-features-list">
+
+                            @foreach(var pricecardFeature in pricecardFeatures)
+                            {
+                                var singleFeature = pricecardFeature.Value<string>("feature");
+
+                                <li>@singleFeature</li>
+
+                            }
+
+
+                        </ul>
+                    </div>
+
+                    <div class="product-price-wrapper">
+
+                        <div class="product-price-label">
+                            <p>@pricecardPrice@pricecardCurrency <span>/@pricecardInterval</span></p>
+                            <p>Ekskl. moms</p>
+                        </div>
+
+                    </div>
+
+
+                </article>
+
+            }
+
+        }
+
+    </div>
+</section>

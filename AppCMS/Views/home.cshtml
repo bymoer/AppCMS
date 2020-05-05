@@ -1,0 +1,37 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+Layout = "master.cshtml";
+}
+
+@* the fun starts here *@
+
+<!-- TODO: Add Hero section -->
+<!-- Hero Image - FULL WINDOW -->
+<section class="hero-section" style="background-image: url(@Model.HeroBackgroundImage.Url)">
+	<div class="container">
+		<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 headline-container">
+			<h1>This is just a Headline</h1>
+			<p id="hero-section-text">
+				A good logo works in the simplest form. It is a memorable representation of your brand and inspires confidence in your customers.
+				It should be fresh and original -- without visual cliches or amateur effects. A logo is well-designed when it looks as good on a
+				business card as it does on a web page or a billboard.
+			</p>
+		</div>
+		<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 hidden-md hidden-sm hidden-xs">
+
+		</div>
+	</div>
+	<div class="hero-section-wave" style="background-image: url(@Model.HeroWave.Url)">
+
+	</div>
+</section>
+
+<!-- TODO: Add Product section -->
+
+@Html.Partial("Products/_products")
+
+@Html.Partial("CTA/_cta")
+
+<!-- TODO: Add Footer section -->
+@Html.Partial("~/views/partials/Navigation/_footer.cshtml")

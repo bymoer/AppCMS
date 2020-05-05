@@ -1,0 +1,48 @@
+﻿@using AppCMS.Controllers;
+@model AppCMS.Models.MemberLoginViewModel
+
+    
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p class="form-title">Signed In</p>
+
+        <p class="logged-in-text">
+            Welcome, @User.Identity.Name
+        </p>
+        <p class="logout-link-text">
+            @Html.ActionLink("Log out", "Logout", "Membership")
+        </p>
+
+    }
+    else
+    {
+
+        <p class="form-title">Sign In</p>
+
+        using (Html.BeginUmbracoForm<MembershipController>("MemberLogin", null, new{@name="loginForm", @class="sign-in-form"}))
+        {
+            <div class="form-group form-group-chubby">
+                @Html.LabelFor(m => m.Login)
+                @Html.TextBoxFor(m => m.Login, new {@class="form-control"})
+            </div>
+            <div class="form-group form-group-chubby">
+                @Html.LabelFor(m => m.Password)
+                @Html.TextBoxFor(m => m.Password, new {@class="form-control", @type="password"})
+            </div>
+            <label class="checkbox">
+            Remember me
+            <input type="checkbox"><span class="modified-checkbox"></span><!--<p>Remember me</p>-->
+            </label>
+
+            <!-- TODO: Change and style button!! -->
+            <button type="submit" class="btn form-submit-btn">Submit</button>
+        }
+
+        <p>@TempData["Status"]</p>
+        
+
+        <a href="/sign-up"><p class="form-link-txt">SignUp</p></a>
+        <p class="form-link-txt">Forgot password?</p>
+    }
+

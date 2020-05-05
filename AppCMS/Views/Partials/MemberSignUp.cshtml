@@ -1,0 +1,32 @@
+﻿@using AppCMS.Controllers;
+@model AppCMS.Models.SignupNewMemberModel
+
+<!-- TODO: Change class name - sign-up-form instead -->
+
+<p class="form-title">Sign Up</p>
+
+@{
+using (Html.BeginUmbracoForm<MembershipController>("Signup", null, new{@name="signupForm", @class="sign-up-form"}))
+    {
+        <div class="form-group form-group-chubby">
+            @Html.LabelFor(m => m.Name, "Name")
+            @Html.TextBoxFor(m => m.Name, new {@class="form-control"})
+        </div>
+        <div class="form-group form-group-chubby">
+            @Html.LabelFor(m => m.Email, "Email")
+            @Html.TextBoxFor(m => m.Email, new {@class="form-control"})
+        </div>
+        <div class="form-group form-group-chubby">
+            @Html.LabelFor(m => m.Password, "Password")
+            @Html.TextBoxFor(m => m.Password, new {placeholder="10 characters minimum", @class="form-control", @type="password"})
+        </div>
+        <div class="form-group form-group-chubby">
+            @Html.LabelFor(m => m.PasswordRepeat, "Repeat Password")
+            @Html.TextBoxFor(m => m.PasswordRepeat, new {@class="form-control", @type="password"})
+        </div>
+
+        <!-- TODO: Change and style button!! -->
+        <button type="submit" class="btn form-submit-btn">Sign Up</button>
+
+    }
+}

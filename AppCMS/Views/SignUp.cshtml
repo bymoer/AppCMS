@@ -1,0 +1,38 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@{
+    Layout = "master.cshtml";
+    
+    var bgImgUrl = Model.Value<IPublishedContent>("signUpBackgroundImage");
+    
+}
+
+@* the fun starts here *@
+
+
+<div class="hero-section" style="background-image:url(@bgImgUrl.Url); min-height: 150vh;">
+    <div class="container">
+
+        <!-- ************************ -->
+        <!-- SIGN IN Dialogue - BEGIN -->
+        <!-- ************************ -->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            
+            <div class="form-wrapper">
+                <!-- Render Partial here -->
+                <!-- "Method" & "Controller" -->
+                @Html.Action("Signup", "Membership")
+
+
+
+            </div>
+
+        </div>
+
+        <!-- ********************** -->
+        <!-- SIGN IN Dialogue - END -->
+        <!-- ********************** -->
+
+    </div>
+
+</div>
